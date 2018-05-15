@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 10%;
+    background-color: #6633ff;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    margin-top: 15%;
+    text-align: center;
+    border: 1px solid black;
+    width: 30%;
+    height: 40%;
+    position: fixed;
+}
+
+form input {
+    display: inline-block;
+    width: 50%;
+}
