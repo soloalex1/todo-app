@@ -7,20 +7,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> 
         <link rel="stylesheet" href="./style/normalize.css" type="text/css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+              integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
         <link rel="stylesheet" href="./style/main.css" type="text/css">
         <title>to-do app</title>
     </head>
     <body>
-        <main>
-            <header>
+        <header>
                <h1>to-do app</h1> 
-            </header>
-            <!--depois ajeito isso-->
-            <form action="login" method="post">
-                username: <input type="text" name="login">
-                senha: <input type="text" name="senha">
-                <input type="submit" value="log in">
+        </header>
+        <section id="signin">
+            <form class="pure-form pure-form-aligned" action="login" method="post">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <input id="name" type="text" placeholder="username" name="username">
+                    </div>
+                    <div class="pure-control-group">
+                        <input id="password" type="password" placeholder="password" name="senha">
+                    </div>
+                    <button type="submit" class="pure-button pure-button-primary">Login</button>
+                    </div>
+                </fieldset>
             </form>
-        </main>
+        </section>
     </body>
 </html>

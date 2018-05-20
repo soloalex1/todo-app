@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String username = request.getParameter("username");
+        String senha = request.getParameter("senha");
         try (PrintWriter out = response.getWriter()) {
-            out.println("TÁ FUNCIONANDO");
+            out.println(username);
+            out.println(senha);
         }
     }   
 }
