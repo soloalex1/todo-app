@@ -17,14 +17,27 @@ header {
 
 form {
     text-align: center;
-    width: 30%;
+    /* width: 30%;*/
     height: 40%;
+}
+
+form *{
+    width: fit-content;
 }
 
 #signin {
     margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
     text-align: center;
     text-align: -moz-center;
+}
+
+#task-list-box{
+    width: 40%;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 /** {
