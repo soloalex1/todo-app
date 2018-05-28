@@ -1,35 +1,40 @@
 package model;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UserDAO {
     
-    public List<User> getAll() {
-        List<User> result = new ArrayList<User>();
+    public User getUser(String login) {
+        User resultUser = null;
         try {
+            
+            //configurando a conexão com o banco de dados: url, usuário do BD e senha
             Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://app.ibituruna.virtual.ufc.br:5432/cadastrousuarios";
-            String usuario = "progweb1";
-            String senha = "ufc123@";
+            String url = "jdbc:postgresql://localhost:5432/todoapp";
+            String usuario = "bogosort";
+            String senha = "avilar123";
             Connection c = DriverManager.getConnection(url, usuario, senha);
-            Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("SELECT id, nome, email, nascimento, login, senha FROM usuario");
+            
+            //utilizando PreparedStatement pra dinamizar a consulta de acordo com o login do usuário
+            PreparedStatement s = c.prepareStatement("SELECT * FROM usuario WHERE login = ?");
+            s.setString(1, login);
+            ResultSet rs = s.executeQuery();
+            
+            //o ponteiro de ResultSet aponta pra linha zero, então eu preciso dar um next pra pegar
             while (rs.next()) {
-                User u = new User();
-                u.setName(rs.getString("nome"));
-                u.setEmail(rs.getString("email"));
-                u.setLogin(rs.getString("login"));
-                u.setPassword(rs.getString("senha"));
-                result.add(u);
+              resultUser = new User();
             }
+            
+            rs.close();
+            s.close();
+            c.close();
+            
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return result;
+        
+        return resultUser;
     }
 }

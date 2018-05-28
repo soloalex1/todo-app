@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,21 +13,10 @@
     </head>
     <body>
         <header>
-            <h1>to-do app</h1> 
+            <h1>to-do app</h1>
         </header>
-        <section id="signin">
-            <form class="pure-form pure-form-aligned" action="login" method="post">
-                <fieldset>
-                    <div class="pure-control-group">
-                        <input id="name" type="text" placeholder="username" name="username">
-                    </div>
-                    <div class="pure-control-group">
-                        <input id="password" type="password" placeholder="password" name="senha">
-                    </div>
-                    <button type="submit" class="pure-button pure-button-primary">Login</button>
-                    </div>
-                </fieldset>
-            </form>
+        <section id="list-area">
+            
         </section>
     </body>
 </html>

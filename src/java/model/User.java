@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class User {
     
     private String name;
@@ -7,10 +9,12 @@ public class User {
     private String password;
     private String email;
     private static int generalID = 1;
-    private int id; 
+    private int id;
+    private ArrayList<Task> taskList;
             
     User(){
         this.id = ++generalID;
+        this.taskList = new ArrayList<>();
     }
 
     public String getName() {
