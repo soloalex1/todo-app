@@ -13,6 +13,10 @@ public class Task implements Serializable {
         this.desc = desc;
         this.isOk = false;
     }
+    
+    Task(){
+        this.isOk = false;
+    }
 
     public String getTitle() {
         return title;

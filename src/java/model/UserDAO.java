@@ -24,7 +24,17 @@ public class UserDAO {
             
             //o ponteiro de ResultSet aponta pra linha zero, então eu preciso dar um next pra pegar
             while (rs.next()) {
+                
+              /*
+                
+              aqui eu inicializo um usuário (já que a consulta só me retorna um), crio um objeto TaskDAO
+              e chamo o getTask() pra pegar todas as Tasks daquele usuário, 
+                
+              */  
+                
               resultUser = new User();
+              TaskDAO taskDAO = new TaskDAO();
+              resultUser.taskList = taskDAO.getTask(resultUser);
             }
             
             rs.close();
