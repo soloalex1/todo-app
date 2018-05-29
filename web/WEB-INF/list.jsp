@@ -15,15 +15,23 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
               integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
         <link rel="stylesheet" href="./style/main.css" type="text/css">
-        <title>Tasklist</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="application/javascript" src="OnTaskSubmit.js"></script>
+        <script type="application/javascript" src="functions.js"></script>
+        <title>Tasklist</title>
     </head>
     <body>
+        <%
+            String username = request.getParameter("username");
+        %>
         <header>
                <h1>tasklist</h1> 
         </header>
         <div id="task-list-box">
-            <input id="add-task-field" type="text" name="taskname" placeholder="Nova tarefa"/>            
+            <span>Olá, <%=username%></span>
+            </br>
+            <div class="task"> <span class="task-text">benis</span>  <span style="color: red" class="task-remove"> X </span> </div>
+            <input id="task-add-field" type="text" name="taskname" placeholder="Nova tarefa"/>            
         </div>
     </body>
 </html>

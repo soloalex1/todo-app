@@ -9,7 +9,7 @@ public class User {
     private static int generalID = 1;
     private int id; 
             
-    User(){
+    public User(){
         this.id = ++generalID;
     }
 

@@ -13,18 +13,16 @@ public class UserDAO {
         List<User> result = new ArrayList<User>();
         try {
             Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://app.ibituruna.virtual.ufc.br:5432/cadastrousuarios";
-            String usuario = "progweb1";
-            String senha = "ufc123@";
-            Connection c = DriverManager.getConnection(url, usuario, senha);
+            String url = "jdbc:postgresql://localhost:5432/todoapp";
+            String usuariobd = "bogosort";
+            String senhabd = "avilar123";
+            Connection c = DriverManager.getConnection(url, usuariobd, senhabd);
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("SELECT id, nome, email, nascimento, login, senha FROM usuario");
+            ResultSet rs = s.executeQuery("SELECT login FROM usuario");
             while (rs.next()) {
                 User u = new User();
-                u.setName(rs.getString("nome"));
-                u.setEmail(rs.getString("email"));
                 u.setLogin(rs.getString("login"));
-                u.setPassword(rs.getString("senha"));
+                System.out.println(u.getLogin());
                 result.add(u);
             }
         } catch (ClassNotFoundException | SQLException ex) {

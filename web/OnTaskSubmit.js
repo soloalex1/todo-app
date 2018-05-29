@@ -5,38 +5,13 @@
  */
 
 window.onload = function() {
-    document.getElementById("add-task-field").addEventListener("keydown", function(e) {
-        // Enter is pressed
-        if (e.keyCode === 13) {
-            var element = this;
-            var parent = this.parentNode;
-            var text = element.value;
-            if (text.length > 0) {
-                window.console.log(text);
-                /*var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange=function()
-                {
-                    if (xmlhttp.readyState===4 && xmlhttp.status===200)
-                    {
-                        document.getElementById("add-task-field").innerHTML=xmlhttp.responseText;
-                    }
-                }*/
-                
-                //Delete and copy element.
-                var elementcopy = element;
-                parent.removeChild(element);
-                
-                //Then, create new task element
-                var task = document.createElement("div");
-                var tasktext = document.createTextNode(elementcopy.value);
-                task.appendChild(tasktext);
-                parent.appendChild(task);
-                
-                //And a new add-task-field element
-                elementcopy.value = "";
-                parent.appendChild(elementcopy);
-                
-            }
-        }
-    }, false);
-}
+    document.getElementById("task-add-field").addEventListener("keydown", function(event) { createTask(event, this); }, false);
+    
+    document.querySelectorAll(".task-text").forEach(function (elem) {
+        elem.addEventListener("click", function(){ crossTask(elem); }, false);
+    });
+    
+    document.querySelectorAll(".task-remove").forEach(function (elem) {
+        elem.addEventListener("click", function(){ removeTask(elem); }, false);
+    });
+};
