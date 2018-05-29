@@ -33,8 +33,8 @@ public class UserDAO {
               */  
                 
               resultUser = new User();
-              TaskDAO taskDAO = new TaskDAO();
-              resultUser.taskList = taskDAO.getTask(resultUser);
+              TaskDAO dao = new TaskDAO();
+              resultUser.taskList = dao.getTask(resultUser);
             }
             
             rs.close();
