@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class User {
     
     private String name;
@@ -7,14 +9,16 @@ public class User {
     private String password;
     private String email;
     private static int generalID = 1;
-    private int id; 
+    private int id;
+    protected ArrayList<Task> taskList;
             
-    public User(){
+    User(){
         this.id = ++generalID;
+        this.taskList = new ArrayList<>();
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -22,7 +26,7 @@ public class User {
     }
 
     public String getLogin() {
-        return login;
+        return this.login;
     }
 
     public void setLogin(String login) {
@@ -38,10 +42,15 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public String getID(){
+        return Integer.toString(this.id);
+    }
+
 }

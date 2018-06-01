@@ -23,10 +23,13 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String senha = request.getParameter("senha");
         
+		UserDAO dao = new UserDAO();
+        User u = dao.getUser(username);
+        u.setName(username);
         
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/list.jsp");
         rd.forward(request, response);
         
         
-    }   
+    }
 }
