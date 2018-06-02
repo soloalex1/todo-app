@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class Task implements Serializable {
     
     private String title;
-    private String desc;
+    private String description;
     private boolean isOk;
     
     Task(String title, String desc){
         this.title = title;
-        this.desc = desc;
+        this.description = desc;
         this.isOk = false;
     }
     
@@ -26,12 +26,12 @@ public class Task implements Serializable {
         this.title = title;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getsetDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String desc) {
+        this.description = desc;
     }
 
     public boolean getStat() {

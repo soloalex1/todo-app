@@ -23,13 +23,12 @@ function createTask(event, elem) {
             var x = document.createElement("span");
             x.className = "task-remove";
             x.innerHTML = " X ";
-            x.style = "color: red";
             var tasktext = document.createTextNode(elementcopy.value);
             text.appendChild(tasktext);
             task.appendChild(text);
             task.appendChild(x);
             parent.appendChild(task);
-            tasktext.addEventListener("click", function(){ crossTask(tasktext); }, false);
+            text.addEventListener("click", function(){ crossTask(text); }, false);
             x.addEventListener("click", function(){ removeTask(x); }, false);
 
             //And a new add-task-field element
@@ -46,6 +45,6 @@ function crossTask(elem) {
 };
 
 function removeTask(elem) {
-    elem.parentNode.remove(elem);
+    elem.parentNode.parentNode.removeChild(elem.parentNode);
     console.log("benis remove click");
 };

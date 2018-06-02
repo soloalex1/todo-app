@@ -8,13 +8,31 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private static int generalID = 1;
+    //private static int generalID = 1;
     private int id;
     protected ArrayList<Task> taskList;
             
     User(){
-        this.id = ++generalID;
+        //this.id = ++generalID;
         this.taskList = new ArrayList<>();
+    }
+    
+    /**
+     * @return the id
+     */
+    public int getID()
+    {
+	//return Integer.toString(this.id);
+	return this.id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setID(int id)
+    {
+	//this.id = Integer.valueOf(id);
+	this.id = id;
     }
 
     public String getName() {
@@ -47,10 +65,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-    
-    public String getID(){
-        return Integer.toString(this.id);
     }
 
 }

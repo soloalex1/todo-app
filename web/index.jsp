@@ -18,6 +18,11 @@
             <h1>to-do app</h1> 
         </header>
         <section id="signin">
+	    <% 
+		if (request.getAttribute("warning") != null) { %>
+		<p><%=request.getAttribute("warning")%></p>
+		<%}
+	    %>
             <form class="pure-form pure-form-aligned" action="login" method="post">
                 <fieldset>
                     <div class="pure-control-group">
