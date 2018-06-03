@@ -14,9 +14,9 @@ public class TaskDAO {
             //configurando a conexão com o banco de dados: url, usuário do BD e senha
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/todoapp";
-            String usuario = "bogosort";
-            String senha = "avilar123";
-            Connection c = DriverManager.getConnection(url, usuario, senha);
+            String usuarioBD = "bogosort";
+            String senhaBD = "avilar123";
+            Connection c = DriverManager.getConnection(url, usuarioBD, senhaBD);
             
             /* 
                 utilizando PreparedStatement pra dinamizar a consulta, dessa vez com o id do usuário
@@ -24,14 +24,14 @@ public class TaskDAO {
             */
             
             PreparedStatement s = c.prepareStatement("SELECT * FROM tasks WHERE user_id = ?");
-            s.setString(1, u.getID());
+            s.setInt(1, u.getID());
             ResultSet rs = s.executeQuery();
             
             //aqui eu pego todas as tasks, com titulo, descrição e status, e adiciono pro array de retorno
             while (rs.next()) {
               Task t = new Task();
               t.setTitle(rs.getString("title"));
-              t.setDesc(rs.getString("desc"));
+              t.setDescription(rs.getString("description"));
               t.setStat(rs.getBoolean("is_ok"));
               taskList.add(t);
             }

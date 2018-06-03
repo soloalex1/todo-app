@@ -8,7 +8,7 @@ body {
 header {
     width: 100%;
     height: 10%;
-    background-color: #0075e1;
+    background-color: #6633ff;
     color: #fff;
     text-align: center;
     position: fixed;
@@ -17,14 +17,63 @@ header {
 
 form {
     text-align: center;
-    width: 30%;
+    /* width: 30%;*/
     height: 40%;
 }
 
+form *{
+    /* width: fit-content; */
+}
+
 #signin {
-    margin-top: 10%;
+    margin-top: 100px;
+    margin-left: 30%;
+    margin-right: 30%;
     text-align: center;
     text-align: -moz-center;
+}
+
+#task-list-box{
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.task {
+    /* padding: 10px; */
+    height: 40px;
+    margin: 5px 0;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: gray;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+span.task-text {
+    padding: 10px;
+}
+
+span.task-remove {
+    float: right;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    /* padding: 10px; */
+    height: 20px;
+    width: 40px;
+    background-color: red;
+    color: white;
+}
+
+input#task-add-field {
+    width: inherit;
+    background-color: inherit;
+    border-style: ridge;
+    padding: 10px;
+    /* margin: 5px 0; */
+    line-height: inherit;
 }
 
 /** {
@@ -68,4 +117,5 @@ form {
 form input {
     display: inline-block;
     width: 50%;
+
 }*/
