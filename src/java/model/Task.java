@@ -26,7 +26,7 @@ public class Task implements Serializable {
         this.title = title;
     }
 
-    public String getsetDescription() {
+    public String getDescription() {
         return description;
     }
 
