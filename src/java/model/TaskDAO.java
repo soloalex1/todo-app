@@ -1,8 +1,6 @@
 package model;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.ArrayList;
 
 public class TaskDAO {
@@ -48,7 +46,7 @@ public class TaskDAO {
         return taskList;
     } 
 
-    public void setTask(User u, ArrayList<Task> taskList){
+    public void setTasks(User u, ArrayList<Task> taskList){
         Connection c = null;
         try {
             //configurando a conexão com o banco de dados: url, usuário do BD e senha

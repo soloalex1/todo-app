@@ -1,7 +1,7 @@
 package model;
 
-import java.security.*;
-import java.math.*;
+import java.security.MessageDigest;
+import java.math.BigInteger;
 
 // classe de encriptação da senha
 public class MD5 {

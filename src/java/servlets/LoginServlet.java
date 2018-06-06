@@ -41,9 +41,8 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("warning", "Usuário ou senha incorretos");
             } else {
                 request.setAttribute("user_id", u.getID());
-//                request.setAttribute("senha", md5.getMD5(senha));;
+                request.setAttribute("senha", u.getPassword());
             }
-	    
 	    request.setAttribute("warning", null);
 	    rd = request.getRequestDispatcher("WEB-INF/list.jsp");
 	    rd.forward(request, response);

@@ -7,6 +7,7 @@ public class Task implements Serializable {
     private String title;
     private String description;
     private boolean isOk;
+    private int id;
     
     Task(String title, String desc){
         this.title = title;
@@ -41,4 +42,13 @@ public class Task implements Serializable {
     public void setStat(boolean isOk) {
         this.isOk = isOk;
     }
+    
+    public int getID(){
+        return this.id;
+    }
+    
+    public void setID(int id){
+        this.id = id;
+    }
+    
 }

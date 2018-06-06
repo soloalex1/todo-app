@@ -1,13 +1,12 @@
 package model;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class UserDAO {
     
     public User getUser(String login, String senha) {
         User resultUser = null;
+        
         try {
             
             //configurando a conexão com o banco de dados: url, usuário do BD e senha
@@ -34,9 +33,10 @@ public class UserDAO {
                 
                 // pega o dado da primeira linha do ResultSet antes de chamar o método next()
                 // é uma solução que funciona em todos os tipos de bancos de dados
+                // como eu já chamei rs.next() ali no if, ele já sai da linha zero (sim, isso mesmo)
                 
                 do {
-                    resultUser.setID(rs.getInt("id"));
+                    resultUser.setID(rs.getInt("user_id"));
                     resultUser.setLogin(rs.getString("login"));
                     resultUser.setPassword(rs.getString("senha"));
                     resultUser.taskList = dao.getTask(resultUser);

@@ -20,7 +20,6 @@ public class User {
     }
 
     public void setID(int id) {
-	//this.id = Integer.valueOf(id);
 	this.id = id;
     }
 
