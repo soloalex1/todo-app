@@ -1,13 +1,12 @@
 package model;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class UserDAO {
     
     public User getUser(String login) {
         User resultUser = null;
+        
         try {
             
             //configurando a conexão com o banco de dados: url, usuário do BD e senha
@@ -22,22 +21,25 @@ public class UserDAO {
             s.setString(1, login);
             ResultSet rs = s.executeQuery();
             
-            //o ponteiro de ResultSet aponta pra linha zero, então eu preciso dar um next pra pegar
-            while (rs.next()) {
+            if(rs.next() == false){
+            // se a consulta não retornar nenhum usuário, retorna o usuário nulo
+                return resultUser;
+            } else {
+            // se retornar, inicializa um novo usuário e o TaskDAO
+           
+                resultUser = new User();
+                TaskDAO dao = new TaskDAO();
                 
-              /*
+                // pega o dado da primeira linha do ResultSet antes de chamar o método next()
+                // é uma solução que funciona em todos os tipos de bancos de dados
+                // como eu já chamei rs.next() ali no if, ele já sai da linha zero (sim, isso mesmo)
                 
-              aqui eu inicializo um usuário (já que a consulta só me retorna um), crio um objeto TaskDAO
-              e chamo o getTask() pra pegar todas as Tasks daquele usuário, 
-                
-              */  
-                
-              resultUser = new User();
-              TaskDAO dao = new TaskDAO();
-	      resultUser.setID(rs.getInt("user_id"));
-	      resultUser.setLogin(rs.getString("login"));
-	      resultUser.setPassword(rs.getString("senha"));
-              resultUser.taskList = dao.getTask(resultUser);
+                do {
+                    resultUser.setID(rs.getInt("user_id"));
+                    resultUser.setLogin(rs.getString("login"));
+                    resultUser.setPassword(rs.getString("senha"));
+                    resultUser.taskList = dao.getTask(resultUser);
+                } while (rs.next());
             }
             
             rs.close();
@@ -45,10 +47,9 @@ public class UserDAO {
             c.close();
             
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         
         return resultUser;
     }
-
 }

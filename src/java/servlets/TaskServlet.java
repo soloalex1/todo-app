@@ -14,6 +14,6 @@ public class TaskServlet extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userID = request.getParameter("user_id");
-	String taskTitle = request.getParameter("taskTitle");
+	    String taskTitle = request.getParameter("taskTitle");
     }
 }

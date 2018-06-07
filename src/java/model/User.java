@@ -8,30 +8,18 @@ public class User {
     private String login;
     private String password;
     private String email;
-    //private static int generalID = 1;
     private int id;
     protected ArrayList<Task> taskList;
             
     User(){
-        //this.id = ++generalID;
         this.taskList = new ArrayList<>();
     }
     
-    /**
-     * @return the id
-     */
-    public int getID()
-    {
-	//return Integer.toString(this.id);
+    public int getID() {
 	return this.id;
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setID(int id)
-    {
-	//this.id = Integer.valueOf(id);
+    public void setID(int id) {
 	this.id = id;
     }
 
