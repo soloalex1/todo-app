@@ -25,13 +25,16 @@ public class LoginServlet extends HttpServlet {
         
 	RequestDispatcher rd;
 	UserDAO dao = new UserDAO();
-        User u = dao.getUser(username, senha);
+        User u = dao.getUser(username);
 	
 	if (u != null) {
-	    request.setAttribute("user_id", u.getID());
-	    request.setAttribute("warning", null);
-	    rd = request.getRequestDispatcher("WEB-INF/list.jsp");
-	    rd.forward(request, response);
+	    if (senha.equals(u.getPassword())) {
+		request.setAttribute("user_id", u.getID());
+		request.setAttribute("user", u.getLogin());
+		request.setAttribute("warning", null);
+		rd = request.getRequestDispatcher("WEB-INF/list.jsp");
+                rd.forward(request, response);
+	    }
 	} else {
 	    request.setAttribute("user_id", null);
 	    request.setAttribute("warning", "Usuário ou senha incorretos");

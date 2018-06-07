@@ -67,4 +67,12 @@ public class User {
         this.email = email;
     }
 
+    /**
+     * @return the taskList
+     */
+    public ArrayList<Task> getTaskList()
+    {
+	return taskList;
+    }
+
 }

@@ -53,6 +53,7 @@ form *{
 
 span.task-text {
     padding: 10px;
+    cursor: pointer;
 }
 
 span.task-remove {
@@ -65,6 +66,7 @@ span.task-remove {
     width: 40px;
     background-color: red;
     color: white;
+    cursor: pointer;
 }
 
 input#task-add-field {

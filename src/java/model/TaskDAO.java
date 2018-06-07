@@ -40,12 +40,24 @@ public class TaskDAO {
             s.close();
             c.close();
             
-        } catch (ClassNotFoundException | SQLException ex){
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //retorno o array, e no servlet eu substituo User.taskList por essa taskList aqui :)
         return taskList;
         
-    } 
+    }
+    
+    public void newTask(Task t, User u) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            String url = "jdbc:postgresql://localhost:5432/todoapp";
+            String usuarioBD = "bogosort";
+            String senhaBD = "avilar123";
+            Connection c = DriverManager.getConnection(url, usuarioBD, senhaBD);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

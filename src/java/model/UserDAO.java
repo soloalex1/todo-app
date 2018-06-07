@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class UserDAO {
     
-    public User getUser(String login, String senha) {
+    public User getUser(String login) {
         User resultUser = null;
         try {
             
@@ -18,9 +18,8 @@ public class UserDAO {
             Connection c = DriverManager.getConnection(url, usuarioBD, senhaBD);
             
             //utilizando PreparedStatement pra dinamizar a consulta de acordo com o login do usuário
-            PreparedStatement s = c.prepareStatement("SELECT * FROM usuario WHERE login = ? AND senha = ? ");
+            PreparedStatement s = c.prepareStatement("SELECT * FROM usuario WHERE login = ?");
             s.setString(1, login);
-	    s.setString(2, senha);
             ResultSet rs = s.executeQuery();
             
             //o ponteiro de ResultSet aponta pra linha zero, então eu preciso dar um next pra pegar
@@ -35,7 +34,7 @@ public class UserDAO {
                 
               resultUser = new User();
               TaskDAO dao = new TaskDAO();
-	      resultUser.setID(rs.getInt("id"));
+	      resultUser.setID(rs.getInt("user_id"));
 	      resultUser.setLogin(rs.getString("login"));
 	      resultUser.setPassword(rs.getString("senha"));
               resultUser.taskList = dao.getTask(resultUser);

@@ -23,7 +23,7 @@
 		<p><%=request.getAttribute("warning")%></p>
 		<%}
 	    %>
-            <form class="pure-form pure-form-aligned" action="login" method="post">
+            <form class="pure-form pure-form-aligned" action="main" method="post">
                 <fieldset>
                     <div class="pure-control-group">
                         <input id="name" type="text" placeholder="username" name="username">
