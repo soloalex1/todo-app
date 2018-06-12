@@ -46,10 +46,6 @@ public class TaskDAO {
         return taskList;
         
     }
-    
-    public void newTask(Task t, User u) {
-        try {
-    } 
 
     public void setTasks(User u, ArrayList<Task> taskList) {
         Connection c = null;

@@ -26,24 +26,25 @@
     </head>
     <body>
         <%
-            String user = (String) request.getAttribute("user");
+            String userLogin= (String) request.getAttribute("userLogin");
+	    User user = null;
+	    if (userLogin != null) {
+		    UserDAO ud = new UserDAO();
+		    user = ud.getUser(userLogin);
+	    }
         %>
         <header>
                <h1>to-do app</h1> 
         </header>
         <div id="task-list-box">
-            <span>Olá, <%=user%></span>
+            <span>Olá, <%=user.getLogin()%></span>
             </br>
 	    <%
-		if (user != null) {
-		    UserDAO ud = new UserDAO();
-		    User u = ud.getUser(user);
-		    ArrayList<Task> t = u.getTaskList();
-                    if (!t.isEmpty()) {
-                        for (int i =0; i < t.size(); i++) {%>
-                            <div class="task"><span class="task-text"> <%=t.get(i).getTitle()%></span><span class="task-remove"> X </span></div>
-                       <%}
-                    }
+		ArrayList<Task> t = user.getTaskList();
+		if (!t.isEmpty()) {
+		    for (int i =0; i < t.size(); i++) {%>
+			<div class="task"><span class="task-text"> <%=t.get(i).getTitle()%></span><span class="task-remove"> X </span></div>
+		   <%}
 		}
 	    %>
             <input id="task-add-field" type="text" name="taskname" placeholder="Nova tarefa"/>            

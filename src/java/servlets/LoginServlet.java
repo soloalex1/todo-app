@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
         MD5 md5 = new MD5();
         RequestDispatcher rd;
         User u = null;
+	
         
         try {
             senha = md5.getMD5(senha);
@@ -35,25 +36,35 @@ public class LoginServlet extends HttpServlet {
         }
 
         // se nenhum campo estiver vazio, pesquisa o username fornecido através do getUser()
-	if (username != null || senha != null) {
-        u = dao.getUser(username);
-        if(u == null){
-            request.setAttribute("warning", "Usuário ou senha incorretos");
-        } else {
-            // TODO: Ajeitar depois. Autenticação da senha do usuário.
-            if (senha.equals(u.getPassword())) {
-                request.setAttribute("user_id", u.getID());
-                request.setAttribute("senha", u.getPassword());
-            }
-        }
-	    request.setAttribute("warning", null);
-	    rd = request.getRequestDispatcher("WEB-INF/list.jsp");
-	    rd.forward(request, response);
+	if (!username.equals("") && !senha.equals("")) {
+	    u = dao.getUser(username);
+	    
+	    if(u == null){
+		request.setAttribute("warning", "Usuário ou senha não encontrado");
+		rd = request.getRequestDispatcher("index.jsp");
+		rd.forward(request, response);
+		
+	    } else {
+		// TODO: Ajeitar depois. Autenticação da senha do usuário.
+		if (senha.equals(u.getPassword())) {
+		    request.setAttribute("warning", null);
+		    request.setAttribute("userLogin", u.getLogin());
+		    rd = request.getRequestDispatcher("WEB-INF/list.jsp");
+		    rd.forward(request, response);
+		    
+		} else {
+		    request.setAttribute("warning", "Usuário ou senha incorreto");
+		    rd = request.getRequestDispatcher("index.jsp");
+		    rd.forward(request, response);
+		    
+		}
+	    }
 	} else {
-	    request.setAttribute("user_id", null);
-	    request.setAttribute("warning", "Usuário ou senha incorretos");
+	    request.setAttribute("userLogin", null);
+	    request.setAttribute("warning", "Usuário ou senha faltando");
 	    rd = request.getRequestDispatcher("index.jsp");
 	    rd.forward(request, response);
+	    
         }
     }
 }
