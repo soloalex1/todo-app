@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 	    u = dao.getUser(username);
 	    
 	    if(u == null){
-		request.setAttribute("warning", "Usuário ou senha não encontrado");
+		request.setAttribute("warning", "Combinação de usuário e senha não encontrada");
 		rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 		
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 		    rd.forward(request, response);
 		    
 		} else {
-		    request.setAttribute("warning", "Usuário ou senha incorreto");
+		    request.setAttribute("warning", "Combinação de usuário e senha incorreta");
 		    rd = request.getRequestDispatcher("index.jsp");
 		    rd.forward(request, response);
 		    
@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 	    }
 	} else {
 	    request.setAttribute("userLogin", null);
-	    request.setAttribute("warning", "Usuário ou senha faltando");
+	    request.setAttribute("warning", "Usuário e senha faltando");
 	    rd = request.getRequestDispatcher("index.jsp");
 	    rd.forward(request, response);
 	    

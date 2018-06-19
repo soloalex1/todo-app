@@ -15,7 +15,7 @@ public class Task implements Serializable {
         this.isOk = false;
     }
     
-    Task(){
+    public Task(){
         this.isOk = false;
     }
 

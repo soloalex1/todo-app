@@ -28,26 +28,35 @@
         <%
             String userLogin= (String) request.getAttribute("userLogin");
 	    User user = null;
+            String username = null;
 	    if (userLogin != null) {
-		    UserDAO ud = new UserDAO();
-		    user = ud.getUser(userLogin);
+                UserDAO ud = new UserDAO();
+                user = ud.getUser(userLogin);
+                username = user.getLogin();
 	    }
         %>
         <header>
                <h1>to-do app</h1> 
         </header>
         <div id="task-list-box">
-            <span>Olá, <%=user.getLogin()%></span>
+            <span>Olá, <%=username%></span>
             </br>
+	    <button id="task-save" onclick='saveTaskList("<%=username%>")'> Salvar </button>
 	    <%
 		ArrayList<Task> t = user.getTaskList();
 		if (!t.isEmpty()) {
 		    for (int i =0; i < t.size(); i++) {%>
-			<div class="task"><span class="task-text"> <%=t.get(i).getTitle()%></span><span class="task-remove"> X </span></div>
+		    <div class="task">
+                        <input class="task-checkbox" type="checkbox">
+			<span class="task-title">
+			    <%=t.get(i).getTitle()%>
+			</span>
+			<span class="task-remove"> X </span>
+		    </div>
 		   <%}
 		}
 	    %>
-            <input id="task-add-field" type="text" name="taskname" placeholder="Nova tarefa"/>            
+            <input id="task-add-field" type="text" name="taskname" placeholder="Nova tarefa"/>
         </div>
     </body>
 </html>

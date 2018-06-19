@@ -32,7 +32,6 @@
                         <input id="password" type="password" placeholder="password" name="senha">
                     </div>
                     <button type="submit" class="pure-button pure-button-primary">Login</button>
-                    </div>
                 </fieldset>
             </form>
         </section>
