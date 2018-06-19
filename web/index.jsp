@@ -14,6 +14,19 @@
         <title>to-do app</title>
     </head>
     <body>
+        <%
+            Cookie[] cookies = request.getCookies();
+            String login = "";
+            String checkbox = "";
+            for(Cookie c : cookies){
+                if(c.getName().equals("remember")){
+                    checkbox = c.getValue();
+                }
+                if(c.getName().equals("userlogin")){
+                    login = c.getValue();
+                }
+            }
+        %>
         <header>
             <h1>to-do app</h1> 
         </header>
@@ -26,12 +39,19 @@
             <form class="pure-form pure-form-aligned" action="main" method="post">
                 <fieldset>
                     <div class="pure-control-group">
-                        <input id="name" type="text" placeholder="username" name="username">
+                        <label for="name">username</label>
+                        <input id="name" type="text" placeholder="ex.: avilar" name="username" value="<%= login %>">
+<!--                        <span class="pure-form-message-inline">este campo é obrigatório.</span>-->
                     </div>
                     <div class="pure-control-group">
-                        <input id="password" type="password" placeholder="password" name="senha">
+                        <label for="password">password</label>
+                        <input id="password" type="password" placeholder="ex.: avilar123" name="senha">
                     </div>
-                    <button type="submit" class="pure-button pure-button-primary">Login</button>
+                    <label for="remember" class="pure-checkbox">
+                        <input id="remember" type="checkbox" value="true" name="checkbox" checked="<%= (checkbox.equals("true") ? "true" : "false") %>"> remember me
+                    </label>
+                    <div class="pure-control-group">
+                        <button type="submit" class="pure-button pure-button-primary">Login</button>
                     </div>
                 </fieldset>
             </form>

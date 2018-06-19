@@ -8,22 +8,13 @@ body {
 header {
     width: 100%;
     height: 10%;
-    background-color: #6633ff;
+    background-color: #5359FF;
     color: #fff;
     text-align: center;
     position: fixed;
     top: 0;
 }
 
-form {
-    text-align: center;
-    /* width: 30%;*/
-    height: 40%;
-}
-
-form *{
-    /* width: fit-content; */
-}
 
 #signin {
     margin-top: 100px;

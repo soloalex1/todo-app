@@ -1,9 +1,3 @@
-<%-- 
-    Document   : list
-    Created on : 21/05/2018, 19:01:19
-    Author     : Rafael Notebook
---%>
-
 <%@page import="model.Task"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.UserDAO"%>
