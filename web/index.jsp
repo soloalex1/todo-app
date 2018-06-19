@@ -15,9 +15,14 @@
     </head>
     <body>
         <%
+            // recuperando todos os cookies da requisição
             Cookie[] cookies = request.getCookies();
+            
+            // utilizando strings vazias para referenciar login e checkbox
             String login = "";
             String checkbox = "";
+            
+            // obtendo o valor dos cookies remember e userlogin (definidos em LoginServlet)
             for(Cookie c : cookies){
                 if(c.getName().equals("remember")){
                     checkbox = c.getValue();
@@ -32,6 +37,7 @@
         </header>
         <section id="signin">
 	    <% 
+                // se houver algum aviso, renderiza
 		if (request.getAttribute("warning") != null) { %>
 		<p><%=request.getAttribute("warning")%></p>
 		<%}
