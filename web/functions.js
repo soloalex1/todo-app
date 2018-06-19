@@ -4,72 +4,93 @@
  * and open the template in the editor.
  */
 
-function createTask(event, elem) {
-    // Enter is pressed
-    if (event.keyCode === 13) {
-        var element = elem;
-        var parent = elem.parentNode;
-        var text = element.value;
-        if (text.length > 0) {
-            //Delete and copy element.
-            var elementcopy = element;
-            parent.removeChild(element);
-
-            //Then, create new task element
-            var task = document.createElement("div");
-            task.className = "task";
-            
-            var taskcheck = document.createElement("input");
-            taskcheck.className = "task-checkbox";
-            taskcheck.type = "checkbox";
-                    
-            var text = document.createElement("span");
-            text.className = "task-title";
-            
-            var x = document.createElement("span");
-            x.className = "task-remove";
-            x.innerHTML = " X ";
-            
-            var tasktext = document.createTextNode(elementcopy.value);
-            
-            task.appendChild(taskcheck);
-            text.appendChild(tasktext);
-            task.appendChild(text);
-            task.appendChild(x);
-            parent.appendChild(task);
-            
-            taskcheck.addEventListener("click", function(){ crossTask(text); }, false);
-            x.addEventListener("click", function(){ removeTask(x); }, false);
-
-            //And a new add-task-field element
-            elementcopy.value = "";
-            parent.appendChild(elementcopy);
-
-        }
+function createTask() {
+    
+    var addTaskField = $("#task-add-field");
+    var taskListBox = $("#task-list-box");
+    var newTaskTitle = null;
+    
+    if (addTaskField.has("value")) {
+	
+	var text = addTaskField.val();
+	if (text.length > 0) {
+	    newTaskTitle = text;
+	}
+    }
+    
+    if (newTaskTitle !== null) {
+	
+	var newElement = "";
+	newElement += '<div class="task">';
+        newElement += '<input class="task-checkbox" type="checkbox">';
+	newElement += '<span class="task-title">';
+	newElement += newTaskTitle;
+	newElement += "</span>";
+	newElement += '<span class="task-remove"> X </span>';
+	newElement += "</div>";
+	
+	addTaskField.before(newElement);
+	
+	$(".task").last().children(".task-checkbox").click(function(e) {
+	    var parentTask = $(this).parent();
+	    crossTask(parentTask);
+	});
+	
+	$(".task").last().children(".task-remove").click(function(e) {
+	    var parentTask = $(this).parent();
+	    removeTask(parentTask);
+	});
+	
+	addTaskField.val("");
+	addTaskField.focus();
     }
 };
 
-function crossTask(elem) {
-    elem.innerHTML = elem.innerHTML.strike();
+function crossTask(task) {
+    /*
+     * Cruza o titulo do elemento task apontado. Se já estiver cruzado, descruza.
+     */
+    if (task.find(".task-checkbox").is(":checked"))
+	task.find(".task-title").wrap("<s></s>");
+    else if (task.find(".task-title").parent().is("s"))
+	task.find(".task-title").unwrap();
 };
 
-function removeTask(elem) {
-    elem.parentNode.parentNode.removeChild(elem.parentNode);
+function removeTask(task) {
+    /*
+     * Remove o elemento task apontado
+     */
+    if (task.hasClass("task")) {
+	task.remove();
+    }
 };
 
 function saveTaskList(username) {
+    /*
+     * Lê os elementos .task da página, transforma numa string com formatação XML e envia para o 
+     * servlet junto ao username.
+     */
+    
     var data = "";
     var tasks = $(".task");
     
     $(tasks).each( function(index) {
+	
         if (index === 0) {
             data += '<?xml version="1.0" encoding="UTF-8"?>';
             data += "<tasks>";
         }
+	
         data += "<task>";
-        data += "<title>"+ $(this).children(".task-title").text().trim() +"</title>";
-        data += "<description> test </description>";
-        data += "<stat> false </stat>";
+        data += "<title>"+ $(this).find(".task-title").text().trim() +"</title>";
+        data += "<description>"+ $(this).find(".task-title").text().trim() +"</description>";
+	
+	var stat = "false";
+	if ($(this).children(".task-checkbox").is(":checked")) {
+	    stat = "true";
+	}
+	
+        data += "<stat>"+ stat +"</stat>";
         data += "</task>";
         if (index === tasks.length - 1) {
             data += "</tasks>";
@@ -78,14 +99,21 @@ function saveTaskList(username) {
     
     console.log(data);
     
-    //send to database
-    $.ajax({
-        type: "post",
-        url: "tasks",
-        data: { 
-            "userLogin":username,
-            "tasks":data
-        }
-    });
+    /* Realiza chamada AJAX tipo POST para o servlet tasks, enviando userLogin e data como parametros.
+     * userLogin é o usuário no qual serão adicionadas as tasks.
+     * data vai formatada como XML, e é processada no servlet.
+     */   
+    
+    if (data.length > 0) {
+	console.log("data sent");
+	$.ajax({
+	    type: "POST",
+	    url: "tasks",
+	    data: { 
+		"userLogin":username,
+		"tasks":data
+	    }
+	});
+    }
     
 }

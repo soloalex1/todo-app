@@ -1,12 +1,21 @@
 $(document).ready(function() {
-    document.getElementById("task-add-field").addEventListener("keydown", function(event) { createTask(event, this); }, false);
-    
-    document.querySelectorAll(".task-checkbox").forEach(function (elem) {
-        elem.addEventListener("click", function(){ crossTask(elem); }, false);
+    $("#task-add-field").keypress(function(e) { 
+	if (e.which == 13) {
+	    createTask();
+	}
     });
     
-    document.querySelectorAll(".task-remove").forEach(function (elem) {
-        elem.addEventListener("click", function(){ removeTask(elem); }, false);
+    $(".task-checkbox").each(function () {
+	var parentTask = $(this).parent();
+        $(this).click(function(e) {
+	    crossTask(parentTask);
+	});
     });
     
+    $(".task-remove").each(function () {
+	var parentTask = $(this).parent();
+        $(this).click(function(e) {
+	    removeTask(parentTask);
+	});
+    });
 });

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : list
-    Created on : 21/05/2018, 19:01:19
-    Author     : Rafael Notebook
---%>
-
 <%@page import="model.Task"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.UserDAO"%>
@@ -47,16 +41,20 @@
 		if (!t.isEmpty()) {
 		    for (int i =0; i < t.size(); i++) {%>
 		    <div class="task">
-                        <input class="task-checkbox" type="checkbox">
-			<span class="task-title">
-			    <%=t.get(i).getTitle()%>
-			</span>
+                        <input class="task-checkbox" type="checkbox" <% if (t.get(i).getStat()==true) {%> checked <%}%>>
+			<% if (t.get(i).getStat()==true) {%>
+			<s>
+			<%}%>
+			<span class="task-title"><%=t.get(i).getTitle()%></span>
+			<% if (t.get(i).getStat()==true) {%>
+			</s>
+			<%}%>
 			<span class="task-remove"> X </span>
 		    </div>
 		   <%}
 		}
 	    %>
-            <input id="task-add-field" type="text" name="taskname" placeholder="Nova tarefa"/>
+            <input id="task-add-field" type="text" name="taskname" maxlength="75" placeholder="Nova tarefa (máximo 75 caracteres)"/>
         </div>
     </body>
 </html>

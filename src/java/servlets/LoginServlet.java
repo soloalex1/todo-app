@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 import model.MD5;
 import model.User;
 import model.UserDAO;
@@ -20,7 +21,19 @@ public class LoginServlet extends HttpServlet {
         // pegando os atributos encaminhados pela requisição
         String username = request.getParameter("username");
         String senha = request.getParameter("senha");
+        String rememberMe = request.getParameter("checkbox");
         
+        if(rememberMe != null && rememberMe.equals("true")){
+            Cookie c1 = new Cookie("remember", "true");
+            Cookie c2 = new Cookie("userlogin", username);
+            c1.setMaxAge(Integer.MAX_VALUE);
+            c2.setMaxAge(Integer.MAX_VALUE);
+            response.addCookie(c1);
+            response.addCookie(c2);
+            System.out.println("entrou");
+        }
+        
+        Cookie[] cookies = request.getCookies();
         
 	// criando as instâncias de DAO e MD5
 	UserDAO dao = new UserDAO();
