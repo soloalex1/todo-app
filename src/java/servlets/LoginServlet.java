@@ -23,17 +23,22 @@ public class LoginServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String rememberMe = request.getParameter("checkbox");
         
+        
+        // verifica se a checkbox foi marcada
         if(rememberMe != null && rememberMe.equals("true")){
+            
+            // se sim, cria dois cookies (um pra checkbox, outro pro login)
             Cookie c1 = new Cookie("remember", "true");
             Cookie c2 = new Cookie("userlogin", username);
+            
+            // seta a data de expiração dos cookies para o máximo dos inteiros
             c1.setMaxAge(Integer.MAX_VALUE);
             c2.setMaxAge(Integer.MAX_VALUE);
+            
+            // salva os cookies na memória do navegador do cliente
             response.addCookie(c1);
             response.addCookie(c2);
-            System.out.println("entrou");
         }
-        
-        Cookie[] cookies = request.getCookies();
         
 	// criando as instâncias de DAO e MD5
 	UserDAO dao = new UserDAO();
@@ -41,7 +46,6 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher rd;
         User u = null;
 	
-        
         try {
             senha = md5.getMD5(senha);
         } catch (Exception ex) {
@@ -77,7 +81,6 @@ public class LoginServlet extends HttpServlet {
 	    request.setAttribute("warning", "Usuário ou senha faltando");
 	    rd = request.getRequestDispatcher("index.jsp");
 	    rd.forward(request, response);
-	    
         }
     }
 }
