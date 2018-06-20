@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
+import javax.servlet.http.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,36 +28,44 @@ import org.xml.sax.SAXException;
 public class TaskServlet extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*String[] data = request.getParameterValues("data");*/
-        String userLogin = request.getParameter("userLogin");
+        
+	// nesse servlet é obtida e salva a lista de tarefas
+	
+	// obter username da sessão atual
+	HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+	
+	// obter string tasks, formatadas como XML
         String tasks = request.getParameter("tasks");
         
+	// inicialização dos DAOs de usuário e tarefa
         UserDAO ud = new UserDAO();
-        User u = ud.getUser(userLogin);
-        
+        TaskDAO td = new TaskDAO();
+	
+	// inicializa fábricas e objeto Document para tratamento do XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
-        Document d = null;
+        Document doc = null;
+	
+	// transforma string tasks no objeto Document
+	// TODO: não funciona com caracteres UTF-8 (é, ô, à etc)
         try {
-            
             builder = factory.newDocumentBuilder();
             InputStream is = new ByteArrayInputStream(tasks.getBytes());
-            d = builder.parse(is);
+            doc = builder.parse(is);
+	    doc.getDocumentElement().normalize();
         } catch (ParserConfigurationException | SAXException ex) {
             ex.printStackTrace();
         }
         
-        d.getDocumentElement().normalize();
-        NodeList nodeList = d.getElementsByTagName("task");
-        
+	// navega pelo Document e obtem dados das tags para gerar o novo ArrayList<Task>
+        NodeList nl = doc.getElementsByTagName("task");
         ArrayList<Task> tl = new ArrayList<>();
-        
-        for (int i=0; i< nodeList.getLength(); i++) {
+        for (int i=0; i< nl.getLength(); i++) {
             
-            Node node = nodeList.item(i);
+            Node node = nl.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
-                
                 Task t = new Task();
                 t.setTitle(element.getElementsByTagName("title").item(0).getTextContent());
                 t.setDescription(element.getElementsByTagName("description").item(0).getTextContent());
@@ -69,7 +78,10 @@ public class TaskServlet extends HttpServlet {
             }
         }
         
-        TaskDAO td = new TaskDAO();
-        td.setTasks(u, tl);
+	// substitui as tarefas do usuário com a ArrayList<Task> gerada
+	User u = ud.getUser(username);
+	if (u != null) {
+	    td.setTasks(u, tl);
+	}
     }
 }

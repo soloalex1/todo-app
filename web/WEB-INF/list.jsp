@@ -20,41 +20,43 @@
     </head>
     <body>
         <%
-            String userLogin= (String) request.getAttribute("userLogin");
+            String username = (String) request.getAttribute("username");
 	    User user = null;
-            String username = null;
-	    if (userLogin != null) {
+	    if (username != null) {
                 UserDAO ud = new UserDAO();
-                user = ud.getUser(userLogin);
-                username = user.getLogin();
+                user = ud.getUser(username);
+		session.setAttribute("username", username);
 	    }
         %>
         <header>
                <h1>to-do app</h1> 
         </header>
-        <div id="task-list-box">
-            <span>Olá, <%=username%></span>
-            </br>
-	    <button id="task-save" onclick='saveTaskList("<%=username%>")'> Salvar </button>
-	    <%
-		ArrayList<Task> t = user.getTaskList();
-		if (!t.isEmpty()) {
-		    for (int i =0; i < t.size(); i++) {%>
-		    <div class="task">
-                        <input class="task-checkbox" type="checkbox" <% if (t.get(i).getStat()==true) {%> checked <%}%>>
-			<% if (t.get(i).getStat()==true) {%>
-			<s>
-			<%}%>
-			<span class="task-title"><%=t.get(i).getTitle()%></span>
-			<% if (t.get(i).getStat()==true) {%>
-			</s>
-			<%}%>
-			<span class="task-remove"> X </span>
-		    </div>
-		   <%}
-		}
-	    %>
-            <input id="task-add-field" type="text" name="taskname" maxlength="75" placeholder="Nova tarefa (máximo 75 caracteres)"/>
-        </div>
+	<main id="content-wrapper">
+	    <span id="user-welcome">Olá, <%=username%></span>
+	    <span id="logout-button"><a href="logout"> Logout </a></span>
+	    <section id="task-list-box">
+		<button id="task-save" onclick='saveTaskList()'> Salvar </button>
+		</br>
+		<%
+		    ArrayList<Task> t = user.getTaskList();
+		    if (!t.isEmpty()) {
+			for (int i =0; i < t.size(); i++) {%>
+			<div class="task" id="<%=t.get(i).getID()%>">
+			    <input class="task-checkbox" type="checkbox" <% if (t.get(i).getStat()==true) {%> checked <%}%>>
+			    <% if (t.get(i).getStat()==true) {%>
+			    <s>
+			    <%}%>
+			    <span class="task-title"><%=t.get(i).getTitle()%></span>
+			    <% if (t.get(i).getStat()==true) {%>
+			    </s>
+			    <%}%>
+			    <span class="task-remove"> X </span>
+			</div>
+		       <%}
+		    }
+		%>
+		<input id="task-add-field" type="text" name="taskname" maxlength="75" placeholder="Nova tarefa (máximo 75 caracteres)"/>
+	    </section>
+	</main>
     </body>
 </html>

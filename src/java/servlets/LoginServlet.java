@@ -17,12 +17,18 @@ public class LoginServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         // nesse servlet é feito todo o tratamento de login, com verificação e validação no banco de dados da aplicação.
-        
+	
         // pegando os atributos encaminhados pela requisição
         String username = request.getParameter("username");
         String senha = request.getParameter("senha");
         String rememberMe = request.getParameter("checkbox");
+	RequestDispatcher rd;
         
+	// verifica se login e senha foram enviados antes de continuar
+	if (username == null | senha == null) {
+	    response.sendRedirect("index.jsp");
+	    return;
+	}
         
         // verifica se a checkbox foi marcada
         if(rememberMe != null && rememberMe.equals("true")){
@@ -43,7 +49,6 @@ public class LoginServlet extends HttpServlet {
 	// criando as instâncias de DAO e MD5
 	UserDAO dao = new UserDAO();
         MD5 md5 = new MD5();
-        RequestDispatcher rd;
         User u = null;
 	
         try {
@@ -62,10 +67,9 @@ public class LoginServlet extends HttpServlet {
 		rd.forward(request, response);
 		
 	    } else {
-		// TODO: Ajeitar depois. Autenticação da senha do usuário.
 		if (senha.equals(u.getPassword())) {
 		    request.setAttribute("warning", null);
-		    request.setAttribute("userLogin", u.getLogin());
+		    request.setAttribute("username", u.getLogin());
 		    rd = request.getRequestDispatcher("WEB-INF/list.jsp");
 		    rd.forward(request, response);
 		    

@@ -16,6 +16,13 @@ header {
 }
 
 
+#content-wrapper {
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
 #signin {
     margin-top: 100px;
     margin-left: 30%;
@@ -25,10 +32,7 @@ header {
 }
 
 #task-list-box{
-    width: 60%;
-    margin-top: 100px;
-    margin-left: 20%;
-    margin-right: 20%;
+    
 }
 
 .task {
