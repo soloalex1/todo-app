@@ -5,7 +5,8 @@
         <group>
             <file>file:/C:/Users/Alexandre/Documents/GitHub/todo-app/src/java/servlets/LoginServlet.java</file>
             <file>file:/C:/Users/Alexandre/Documents/GitHub/todo-app/src/java/servlets/LogoutServlet.java</file>
-            <file>file:/C:/Users/Alexandre/Documents/GitHub/todo-app/web/functions.js</file>
+            <file>file:/C:/Users/Alexandre/Documents/GitHub/todo-app/src/java/servlets/UploadServlet.java</file>
+            <file>file:/C:/Users/Alexandre/Documents/GitHub/todo-app/src/java/servlets/DownloadServlet.java</file>
             <file>file:/C:/Users/Alexandre/Documents/GitHub/todo-app/web/index.jsp</file>
         </group>
     </open-files>
