@@ -7,7 +7,7 @@ body {
 
 header {
     width: 100%;
-    height: 10%;
+    height: 4em;
     background-color: #5359FF;
     color: #fff;
     text-align: center;
@@ -16,35 +16,10 @@ header {
 }
 
 
-#content-wrapper {
-    width: 60%;
-    margin-top: 100px;
-    margin-left: 20%;
-    margin-right: 20%;
-}
+/*
+* Task Page
+*/
 
-#signin {
-    margin-top: 100px;
-    margin-left: 30%;
-    margin-right: 30%;
-    text-align: center;
-    text-align: -moz-center;
-}
-
-#task-list-box{
-    
-}
-
-.task {
-    /* padding: 10px; */
-    height: 40px;
-    margin: 5px 0;
-    border-style: dashed;
-    border-width: 1px;
-    border-color: gray;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
 
 span.task-text {
     padding: 10px;
@@ -73,46 +48,59 @@ input#task-add-field {
     line-height: inherit;
 }
 
-/** {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #eee;
-    font-family: 'Open Sans', sans-serif;
-    height: 100%;
-    width: 100%;
+#task-list-box{
     
 }
 
+.task {
+    /* padding: 10px; */
+    height: 40px;
+    margin: 5px 0;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: gray;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+#content-wrapper {
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+
+/*
+* Login
+*/
+
+
 #signin {
-    border: 1px solid red;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    /* height: 200px; */
+    /* min-width: 320px; */
+    /* min-height: 180px; */
+    /* max-height: 400px; */
+    max-width: 500px;
     text-align: center;
-    width: 100%;
-    height: 50%;
+    text-align: -moz-center;
+    background-color: #eee;
 }
 
-header {
-    width: 100%;
-    height: 10%;
-    background-color: #6633ff;
-    color: #fff;
-    text-align: center;
-    position: fixed;
-    top: 0;
+#signin-body {
+    background-color: #5359FF;
 }
 
-form {
-    margin-top: 15%;
-    text-align: center;
-    border: 1px solid black;
-    width: 30%;
-    height: 40%;
-    position: fixed;
+#signin h4 {
+    padding: 20px;
+    margin: auto;
 }
 
-form input {
-    display: inline-block;
-    width: 50%;
-
-}*/
+.signin-button {
+    margin-top: 1em;
+}

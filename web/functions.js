@@ -22,7 +22,7 @@ function createTask() {
 	
 	var newElement = "";
 	newElement += '<div class="task">';
-        newElement += '<input class="task-checkbox" type="checkbox">';
+    newElement += '<input class="task-checkbox" type="checkbox">';
 	newElement += '<span class="task-title">';
 	newElement += newTaskTitle;
 	newElement += "</span>";
@@ -86,7 +86,7 @@ function saveTaskList() {
         data += "<description>"+ $(this).find(".task-title").text().trim() +"</description>";
 	
 	var stat = "false";
-	if ($(this).children(".task-checkbox").is(":checked")) {
+	if ($(this).find(".task-checkbox").is(":checked")) {
 	    stat = "true";
 	}
 	

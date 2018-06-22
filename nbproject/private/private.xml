@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/codego/todo-app/web/style/main.css</file>
             <file>file:/E:/codego/todo-app/src/java/servlets/TaskServlet.java</file>
-            <file>file:/E:/codego/todo-app/src/java/model/TaskDAO.java</file>
-            <file>file:/E:/codego/todo-app/web/functions.js</file>
+            <file>file:/E:/codego/todo-app/src/java/servlets/LoginServlet.java</file>
+            <file>file:/E:/codego/todo-app/web/index.jsp</file>
             <file>file:/E:/codego/todo-app/src/java/model/Task.java</file>
+            <file>file:/E:/codego/todo-app/web/list-page-listeners.js</file>
             <file>file:/E:/codego/todo-app/web/WEB-INF/list.jsp</file>
         </group>
     </open-files>

@@ -13,7 +13,7 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <title>to-do app</title>
     </head>
-    <body>
+    <body id="signin-body">
         <%
             // recuperando todos os cookies da requisição
             Cookie[] cookies = request.getCookies();
@@ -39,7 +39,7 @@
 	    <% 
                 // se houver algum aviso, renderiza
 		if (request.getAttribute("warning") != null) { %>
-		<p><%=request.getAttribute("warning")%></p>
+		<h4><%=request.getAttribute("warning")%></h4>
 		<%}
 	    %>
             <form class="pure-form pure-form-aligned" action="main" method="post">
@@ -56,7 +56,7 @@
                     <label for="remember" class="pure-checkbox">
                         <input id="remember" type="checkbox" value="true" name="checkbox" checked="<%= (checkbox.equals("true") ? "true" : "false") %>"> remember me
                     </label>
-                    <div class="pure-control-group">
+                    <div class="pure-control-group signin-button">
                         <button type="submit" class="pure-button pure-button-primary">Login</button>
                     </div>
                 </fieldset>
