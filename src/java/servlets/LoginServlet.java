@@ -17,20 +17,21 @@ public class LoginServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         // nesse servlet é feito todo o tratamento de login, com verificação e validação no banco de dados da aplicação.
+        // utilizamos cookies para enviar os dados para o cliente de maneira mais prática
 	
-        // pegando os atributos encaminhados pela requisição
+        // recebendo os atributos encaminhados pela requisição
         String username = request.getParameter("username");
         String senha = request.getParameter("senha");
         String rememberMe = request.getParameter("checkbox");
 	RequestDispatcher rd;
         
-	// verifica se login e senha foram enviados antes de continuar
+	// verificando se login e senha foram enviados antes de continuar
 	if (username == null | senha == null) {
 	    response.sendRedirect("index.jsp");
 	    return;
 	}
         
-        // verifica se a checkbox foi marcada
+        // verificando se a checkbox foi marcada
         if(rememberMe != null && rememberMe.equals("true")){
             
             // se sim, cria dois cookies (um pra checkbox, outro pro login)
@@ -61,23 +62,27 @@ public class LoginServlet extends HttpServlet {
 	if (!username.equals("") && !senha.equals("")) {
 	    u = dao.getUser(username);
 	    
+            // se não encontrar o usuário no banco
 	    if(u == null){
-		request.setAttribute("warning", "Combinação de usuário e senha não encontrada");
+		request.setAttribute("warning", "combinação de usuário e senha não encontrada");
 		rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 		
+              // se encontrar
 	    } else {
+                
+                // se a senha estiver correta
 		if (senha.equals(u.getPassword())) {
 		    request.setAttribute("warning", null);
 		    request.setAttribute("username", u.getLogin());
 		    rd = request.getRequestDispatcher("WEB-INF/list.jsp");
 		    rd.forward(request, response);
-		    
+                  
+                  // se não estiver
 		} else {
-		    request.setAttribute("warning", "Combinação de usuário e senha incorreta");
+		    request.setAttribute("warning", "senha incorreta.");
 		    rd = request.getRequestDispatcher("index.jsp");
-		    rd.forward(request, response);
-		    
+		    rd.forward(request, response); 
 		}
 	    }
 	} else {

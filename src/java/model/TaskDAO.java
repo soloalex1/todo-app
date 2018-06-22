@@ -25,7 +25,7 @@ public class TaskDAO {
             s.setInt(1, u.getID());
             ResultSet rs = s.executeQuery();
             
-            //aqui eu pego todas as tasks, com titulo, descrição e status, e adiciono pro array de retorno
+            // obtendo todas as tasks, com titulo, descrição e status, e adicionando pro array de retorno
             while (rs.next()) {
               Task t = new Task();
               t.setTitle(rs.getString("title"));
@@ -43,8 +43,7 @@ public class TaskDAO {
         }
         
         //retorno o array, e no servlet eu substituo User.taskList por essa taskList aqui :)
-        return taskList;
-        
+        return taskList;        
     }
 
     public void setTasks(User u, ArrayList<Task> taskList) {
@@ -57,12 +56,8 @@ public class TaskDAO {
             String senhaBD = "avilar123";
             c = DriverManager.getConnection(url, usuarioBD, senhaBD);
             
-            /* 
-            colocando em modo de transação SQL: assim, eu posso garantir uma maior segurança na atualização do banco
-            as inserções só são validadas se todas obtiverem sucesso, caso contrário, tudo é descartado
-            
-            */
-            
+            // colocando em modo de transação SQL: assim, eu posso garantir uma maior segurança na atualização do banco
+            // as inserções só são validadas se todas obtiverem sucesso, caso contrário, tudo é descartado           
             c.setAutoCommit(false);
             PreparedStatement s;
             Statement st = c.createStatement();

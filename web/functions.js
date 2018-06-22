@@ -1,18 +1,12 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 function createTask() {
     
-    var addTaskField = $("#task-add-field");
-    var taskListBox = $("#task-list-box");
-    var newTaskTitle = null;
+    const addTaskField = $("#task-add-field");
+    const taskListBox = $("#task-list-box");
+    let newTaskTitle = null;
     
     if (addTaskField.has("value")) {
 	
-	var text = addTaskField.val();
+	let text = addTaskField.val();
 	if (text.length > 0) {
 	    newTaskTitle = text;
 	}
@@ -20,7 +14,7 @@ function createTask() {
     
     if (newTaskTitle !== null) {
 	
-	var newElement = "";
+	let newElement = "";
 	newElement += '<div class="task">';
     newElement += '<input class="task-checkbox" type="checkbox">';
 	newElement += '<span class="task-title">';
@@ -32,12 +26,12 @@ function createTask() {
 	addTaskField.before(newElement);
 	
 	$(".task").last().children(".task-checkbox").click(function(e) {
-	    var parentTask = $(this).parent();
+	    let parentTask = $(this).parent();
 	    crossTask(parentTask);
 	});
 	
 	$(".task").last().children(".task-remove").click(function(e) {
-	    var parentTask = $(this).parent();
+	    let parentTask = $(this).parent();
 	    removeTask(parentTask);
 	});
 	
@@ -71,8 +65,8 @@ function saveTaskList() {
      * servlet junto ao username.
      */
     
-    var data = "";
-    var tasks = $(".task");
+    let data = "";
+    const tasks = $(".task");
     
     $(tasks).each( function(index) {
 	
@@ -85,7 +79,7 @@ function saveTaskList() {
         data += "<title>"+ $(this).find(".task-title").text().trim() +"</title>";
         data += "<description>"+ $(this).find(".task-title").text().trim() +"</description>";
 	
-	var stat = "false";
+	let stat = "false";
 	if ($(this).find(".task-checkbox").is(":checked")) {
 	    stat = "true";
 	}
