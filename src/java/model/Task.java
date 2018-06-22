@@ -50,5 +50,4 @@ public class Task implements Serializable {
     public void setID(int id){
         this.id = id;
     }
-    
 }

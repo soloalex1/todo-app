@@ -41,13 +41,12 @@
 		if (request.getAttribute("warning") != null) { %>
 		<p><%=request.getAttribute("warning")%></p>
 		<%}
-	    %>
+                %>
             <form class="pure-form pure-form-aligned" action="main" method="post">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">username</label>
                         <input id="name" type="text" placeholder="ex.: avilar" name="username" value="<%= login %>">
-<!--                        <span class="pure-form-message-inline">este campo é obrigatório.</span>-->
                     </div>
                     <div class="pure-control-group">
                         <label for="password">password</label>
