@@ -16,7 +16,7 @@ function createTask() {
 	
 	let newElement = "";
 	newElement += '<div class="task">';
-        newElement += '<input class="task-checkbox" type="checkbox">';
+    newElement += '<input class="task-checkbox" type="checkbox">';
 	newElement += '<span class="task-title">';
 	newElement += newTaskTitle;
 	newElement += "</span>";
@@ -45,9 +45,9 @@ function crossTask(task) {
      * Cruza o titulo do elemento task apontado. Se já estiver cruzado, descruza.
      */
     if (task.find(".task-checkbox").is(":checked"))
-	task.find(".task-title").wrap("<s></s>");
-    else if (task.find(".task-title").parent().is("s"))
-	task.find(".task-title").unwrap();
+	$(task).css("background-color", "#d9f8d8")
+    else if (!task.find(".task-checkbox").is(":checked"))
+	$(task).css("background-color", "#f5a2b6")
 };
 
 function removeTask(task) {
