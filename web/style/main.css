@@ -99,8 +99,7 @@ footer>h5 {
 * Task Page
 */
 
-
-#side_bar_save {
+.menu-button {
     margin: 0px 2px;
     padding: 8px 12px;
     background-color: #0078E7;
@@ -110,24 +109,18 @@ footer>h5 {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;    
     cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
 }
 
-#side_bar_logout{
-    margin: 0px 2px;
-    padding: 8px 0px;
-    background-color: #0078E7;
-    border-radius: 3px;
-    border-style: none;
-    color: #fff;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;    
-    cursor: pointer;
-}
-
-#side_bar_logout>a{
+.menu-button > a{
     padding: 8px 12px;
     text-decoration: none;
     color: #fff;
+}
+
+.menu-button:hover{
+    background-color: #004686;
 }
 
 .task {

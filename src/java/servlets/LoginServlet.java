@@ -3,10 +3,7 @@ package servlets;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Cookie;
+import javax.servlet.http.*;
 import model.MD5;
 import model.User;
 import model.UserDAO;
@@ -75,6 +72,10 @@ public class LoginServlet extends HttpServlet {
 		if (senha.equals(u.getPassword())) {
 		    request.setAttribute("warning", null);
 		    request.setAttribute("username", u.getLogin());
+		    
+		    HttpSession session = request.getSession();
+		    session.setAttribute("username", username);
+		    
 		    rd = request.getRequestDispatcher("WEB-INF/list.jsp");
 		    rd.forward(request, response);
                   

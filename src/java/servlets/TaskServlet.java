@@ -17,11 +17,7 @@ import javax.servlet.http.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import jdk.internal.org.xml.sax.InputSource;
-import model.Task;
-import model.TaskDAO;
-import model.User;
-import model.UserDAO;
+import model.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -42,41 +38,9 @@ public class TaskServlet extends HttpServlet {
         UserDAO ud = new UserDAO();
         TaskDAO td = new TaskDAO();
 	
-	// inicializa fábricas e objeto Document para tratamento do XML
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = null;
-        Document doc = null;
-	
-	// transforma string tasks no objeto Document
-	// TODO: não funciona com caracteres UTF-8 (é, ô, à etc)
-        try {
-            builder = factory.newDocumentBuilder();
-            InputStream is = new ByteArrayInputStream(tasks.getBytes());
-            doc = builder.parse(is);
-	    doc.getDocumentElement().normalize();
-        } catch (ParserConfigurationException | SAXException ex) {
-            ex.printStackTrace();
-        }
-        
-	// navega pelo Document e obtem dados das tags para gerar o novo ArrayList<Task>
-        NodeList nl = doc.getElementsByTagName("task");
-        ArrayList<Task> tl = new ArrayList<>();
-        for (int i=0; i< nl.getLength(); i++) {
-            
-            Node node = nl.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
-                Task t = new Task();
-                t.setTitle(element.getElementsByTagName("title").item(0).getTextContent());
-                t.setDescription(element.getElementsByTagName("description").item(0).getTextContent());
-                boolean stat = false;
-                if (element.getElementsByTagName("stat").item(0).getTextContent().equals("true")) {
-                    stat = true;
-                }
-                t.setStat(stat);
-                tl.add(t);
-            }
-        }
+	// cria o XMLParser e faz a decodificação da string
+	XMLParser xmp = new XMLParser();
+	ArrayList<Task> tl = xmp.stringToTaskList(tasks);
         
 	// substitui as tarefas do usuário com a ArrayList<Task> gerada
 	User u = ud.getUser(username);

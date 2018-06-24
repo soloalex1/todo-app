@@ -8,7 +8,11 @@ function createTask() {
 	
 	let text = addTaskField.val();
 	if (text.length > 0) {
-	    newTaskTitle = text;
+	    if (text.length <= 75) {
+		newTaskTitle = text;
+	    } else {
+		alert("Quantidade máxima de caracteres excedida.")
+	    }
 	}
     }
     
@@ -59,22 +63,13 @@ function removeTask(task) {
     }
 };
 
-function saveTaskList() {
-    /*
-     * Lê os elementos .task da página, transforma numa string com formatação XML e envia para o 
-     * servlet.
-     */
-    
+function tasksToXML(tasks_e) {
     let data = "";
-    const tasks = $(".task");
     
-    $(tasks).each( function(index) {
-	
-        if (index === 0) {
-            data += '<?xml version="1.0" encoding="UTF-8"?>';
-            data += "<tasks>";
-        }
-	
+    data += '<?xml version="1.0" encoding="UTF-8"?>';
+    data += "<tasks>";
+	    
+    $(tasks_e).each(function(index) {
         data += "<task>";
         data += "<title>"+ $(this).find(".task-title").text().trim() +"</title>";
         data += "<description>"+ $(this).find(".task-title").text().trim() +"</description>";
@@ -86,25 +81,42 @@ function saveTaskList() {
 	
         data += "<stat>"+ stat +"</stat>";
         data += "</task>";
-        if (index === tasks.length - 1) {
-            data += "</tasks>";
-        }
     });
+    
+    data += "</tasks>";
+    return data;
+};
+
+function saveTaskList() {
+    /*
+     * Lê os elementos .task da página, transforma numa string com formatação XML e envia para o 
+     * servlet.
+     */
+    
+    const tasks = tasksToXML($(".task"));
     
     /* Realiza chamada AJAX tipo POST para o servlet tasks, a data como parametro. 
      * Data vai formatada como XML, e é processada no servlet.
      * Dentro do servlet ele pega o usuário salvo na session para autenticar o envio.
-     */   
-	    
-    if (data.length > 0) {
+     */
+    
+    console.log(tasks);
+    
+    if (tasks.length > 0) {
 	$.ajax({
 	    type: "POST",
 	    url: "tasks",
+	    scriptCharset: "utf-8",
+	    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+
 	    data: {
-		"tasks": data
+		"tasks": tasks
+	    },
+	    success: function( x ){
+		console.log("success")
 	    }
 	});
-	console.log("data sent");
+	console.log("task data sent");
     }
     
-}
+};

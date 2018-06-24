@@ -13,23 +13,19 @@
         <link rel="stylesheet" href="./style/normalize.css" type="text/css">
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
               integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="./style/main.css" type="text/css">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         <script type="application/javascript" src="list-page-listeners.js"></script>
         <script type="application/javascript" src="functions.js"></script>
         <title>To-Do App</title>
     </head>
     <body>
         <%
-                String username = (String) request.getAttribute("username");
+                String username = (String) session.getAttribute("username");
                 User user = null;
                 if (username != null) {
                     UserDAO ud = new UserDAO();
                     user = ud.getUser(username);
-                    session.setAttribute("username", username);
                 }
             %>
         <div id="up-content">
@@ -41,9 +37,9 @@
                 <div class="welcome-box">
                     <span id="user-welcome">Olá, <%=username%></span>
                     <div>
-                        <button id="side_bar_save" onclick="saveTaskList()"> Salvar </button>
-                        <span id="side_bar_logout"><a href="logout"> Logout </a></span>
-                        
+                        <button class="menu-button" id="side_bar_save" onclick="saveTaskList()"> Salvar </button>
+			<button class="menu-button" id="side_bar_download"><a href="download"> Download </a></button>
+                        <button class="menu-button" id="side_bar_logout"><a href="logout"> Logout </a></button>
                     </div>
                 </div>
                 <section id="task-list-box">
@@ -55,14 +51,12 @@
                             for (int i =0; i < t.size(); i++) {%>
                             <div class="task" id="<%=t.get(i).getID()%>">
                                 <input class="task-checkbox" type="checkbox" <% if (t.get(i).getStat()==true) {%> checked <%}%>>
-                                <% if (t.get(i).getStat()==true) {%>
-                                <%}%>
-                                <span class="task-title "><%=t.get(i).getTitle()%></span>
+                                
+				<span class="task-title "><%=t.get(i).getTitle()%></span>
                                 
                                 <span class="task-remove"> X </span>
                                 
                             </div>
-                            <hr>
                            <%}
                         }
                     %>
@@ -71,7 +65,7 @@
             </main>
         </div>
         <footer>
-            <h5>Oi alexandre, o avilar é tcholão xD</h5>
+            <h5>Oi alexandre. eu, guilherme candido, declaro atraves desta mensagem meu desejo e paixão eterna e inigualável por jesus. amem xd</h5>
         </footer>
     </body>
 </html>
