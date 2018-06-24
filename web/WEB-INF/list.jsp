@@ -20,46 +20,58 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         <script type="application/javascript" src="list-page-listeners.js"></script>
         <script type="application/javascript" src="functions.js"></script>
-        <title>to-do app</title>
+        <title>To-Do App</title>
     </head>
     <body>
         <%
-            String username = (String) request.getAttribute("username");
-	    User user = null;
-	    if (username != null) {
-                UserDAO ud = new UserDAO();
-                user = ud.getUser(username);
-		session.setAttribute("username", username);
-	    }
-        %>
-        <header>
-	    <span id="user-welcome"><%=username%></span>
-	    <button id="task-save" class="pure-button pure-button-primary" onclick='saveTaskList()'> Salvar </button>
-	    <a id="logout-button" class="pure-button" href="logout"> Logout </a>
-        </header>
-	<main id="content-wrapper">
-	    <section id="task-list-box">
-		</br>
-		<%
-		    ArrayList<Task> t = user.getTaskList();
-		    if (!t.isEmpty()) {
-			for (int i =0; i < t.size(); i++) {%>
-			<div class="task" id="<%=t.get(i).getID()%>">
-			    <input class="task-checkbox" type="checkbox" <% if (t.get(i).getStat()==true) {%> checked <%}%>>
-			    <% if (t.get(i).getStat()==true) {%>
-			    <s>
-			    <%}%>
-			    <span class="task-title"><%=t.get(i).getTitle()%></span>
-			    <% if (t.get(i).getStat()==true) {%>
-			    </s>
-			    <%}%>
-			    <span class="task-remove"> X </span>
-			</div>
-		       <%}
-		    }
-		%>
-		<input id="task-add-field" type="text" name="taskname" maxlength="75" placeholder="Nova tarefa (máximo 75 caracteres)"/>
-	    </section>
-	</main>
+                String username = (String) request.getAttribute("username");
+                User user = null;
+                if (username != null) {
+                    UserDAO ud = new UserDAO();
+                    user = ud.getUser(username);
+                    session.setAttribute("username", username);
+                }
+            %>
+        <div id="up-content">
+            <header>
+                   <h1>To-Do App</h1> 
+                   
+            </header>
+            <main id="content-wrapper">
+                <div class="welcome-box">
+                    <span id="user-welcome">Olá, <%=username%></span>
+                    <div>
+                        <button id="side_bar_save" onclick="saveTaskList()"> Salvar </button>
+                        <span id="side_bar_logout"><a href="logout"> Logout </a></span>
+                        
+                    </div>
+                </div>
+                <section id="task-list-box">
+                    
+                    </br>
+                    <%
+                        ArrayList<Task> t = user.getTaskList();
+                        if (!t.isEmpty()) {
+                            for (int i =0; i < t.size(); i++) {%>
+                            <div class="task" id="<%=t.get(i).getID()%>">
+                                <input class="task-checkbox" type="checkbox" <% if (t.get(i).getStat()==true) {%> checked <%}%>>
+                                <% if (t.get(i).getStat()==true) {%>
+                                <%}%>
+                                <span class="task-title "><%=t.get(i).getTitle()%></span>
+                                
+                                <span class="task-remove"> X </span>
+                                
+                            </div>
+                            <hr>
+                           <%}
+                        }
+                    %>
+                    <input id="task-add-field" type="text" name="taskname" maxlength="75" placeholder="Nova tarefa (máximo 75 caracteres)"/>
+                </section>
+            </main>
+        </div>
+        <footer>
+            <h5>Oi alexandre, o avilar é tcholão xD</h5>
+        </footer>
     </body>
 </html>
