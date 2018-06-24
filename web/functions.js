@@ -62,7 +62,7 @@ function removeTask(task) {
 function saveTaskList() {
     /*
      * Lê os elementos .task da página, transforma numa string com formatação XML e envia para o 
-     * servlet junto ao username.
+     * servlet.
      */
     
     let data = "";
@@ -91,9 +91,9 @@ function saveTaskList() {
         }
     });
     
-    /* Realiza chamada AJAX tipo POST para o servlet tasks, enviando userLogin e data como parametros.
-     * userLogin é o usuário no qual serão adicionadas as tasks.
-     * data vai formatada como XML, e é processada no servlet.
+    /* Realiza chamada AJAX tipo POST para o servlet tasks, a data como parametro. 
+     * Data vai formatada como XML, e é processada no servlet.
+     * Dentro do servlet ele pega o usuário salvo na session para autenticar o envio.
      */   
 	    
     if (data.length > 0) {
