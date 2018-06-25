@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> 
         <link rel="stylesheet" href="style/main.css" type="text/css">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <title>To-Do App</title>
+        <title>To-do App</title>
     </head>
     <body>
         <%
@@ -31,7 +31,7 @@
         %>
         <div id="up-content">
             <header>
-                <h1>To-Do App</h1> 
+                <h1>To-do App</h1> 
             </header>
             <section id="signin">
                 

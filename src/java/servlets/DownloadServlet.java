@@ -7,7 +7,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import model.*;
-import org.w3c.dom.*;
 
 public class DownloadServlet extends HttpServlet {
 

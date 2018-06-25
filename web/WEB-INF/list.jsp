@@ -17,7 +17,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="application/javascript" src="list-page-listeners.js"></script>
         <script type="application/javascript" src="functions.js"></script>
-        <title>To-Do App</title>
+        <title>To-do App</title>
     </head>
     <body>
         <%
@@ -30,8 +30,7 @@
         %>
         <div id="up-content">
             <header>
-                   <h1>To-Do App</h1> 
-                   
+                   <h1>To-do App</h1>
             </header>
             <main id="content-wrapper">
                 <div class="welcome-box">
