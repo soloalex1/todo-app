@@ -52,7 +52,7 @@
             </main>
         </div>
         <footer>
-            <h5>Oi alexandre, o avilar é tcholão xD</h5>
+            <h5>Alexandre Machado, Guilherme Cândido, Rafael Avilar - 2018</h5>
         </footer>
     </body>
 </html>

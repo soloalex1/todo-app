@@ -10,7 +10,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <title>To-Do App</title>
     </head>
-    <body id="signin-body">
+    <body>
         <%
             // recuperando todos os cookies da requisição
             Cookie[] cookies = request.getCookies();
@@ -63,7 +63,7 @@
             </section>
         </div>
         <footer>
-            <h5>Oi alexandre. eu, guilherme candido, declaro atraves desta mensagem meu desejo e paixão eterna e inigualável por jesus. amem xd</h5>
+            <h5>Alexandre Machado, Guilherme Cândido, Rafael Avilar - 2018</h5>
         </footer>
     </body>
 </html>

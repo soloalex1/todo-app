@@ -76,7 +76,7 @@
             </main>
         </div>
         <footer>
-            <h5>Oi alexandre. eu, guilherme candido, declaro atraves desta mensagem meu desejo e paixão eterna e inigualável por jesus. amem xd</h5>
+            <h5>Alexandre Machado, Guilherme Cândido, Rafael Avilar - 2018</h5>
         </footer>
     </body>
 </html>
