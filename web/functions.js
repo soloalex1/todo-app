@@ -39,10 +39,20 @@ function createTask() {
 	    removeTask(parentTask);
 	});
 	
+	colorTaskBackground($(".task").last());
+	
 	addTaskField.val("");
 	addTaskField.focus();
     }
 };
+
+function colorTaskBackground(task) {
+    if ($(task).find('.task-checkbox').is(':checked')) {
+	$(task).css('background-color', '#d9f8d8');
+    } else {
+	$(task).css('background-color', '#f5a2b6');
+    }
+}
 
 function crossTask(task) {
     /*
@@ -112,8 +122,23 @@ function saveTaskList() {
 	    data: {
 		"tasks": tasks
 	    },
-	    success: function( x ){
-		console.log("success")
+	    beforeSend: function(x) {
+		console.log("sending...");
+		$('#side_bar_save').html('...');
+		$('#side_bar_save').attr("disabled", "disabled");
+	    },
+	    success: function(x) {
+		console.log("success");
+		alert("Tarefas salvas!");
+		$('#side_bar_save').html('Salvar');
+		$('#side_bar_save').html('Salvar');
+		$('#side_bar_save').removeAttr('disabled');
+	    },
+	    error: function (x) {
+		console.log("error saving data");
+		alert("Erro salvando tarefas");
+		$('#side_bar_save').html('Salvar');
+		$('#side_bar_save').removeAttr('disabled');
 	    }
 	});
 	console.log("task data sent");

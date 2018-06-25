@@ -18,4 +18,8 @@ $(document).ready(function() {
 	    removeTask(parentTask);
 	});
     });
+    
+   $('.task').each(function () {
+       colorTaskBackground($(this));
+   });
 });
