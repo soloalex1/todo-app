@@ -24,4 +24,8 @@ $(document).ready(function() {
         $('#file-name').text(fileName);
     });
 
+    
+   $('.task').each(function () {
+       colorTaskBackground($(this));
+   });
 });
