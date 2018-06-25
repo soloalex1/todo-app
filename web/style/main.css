@@ -130,10 +130,6 @@ header {
     display: none;
 }
 
-
-
-
-
 .welcome-box {
     display: flex;
     justify-content: space-between;
@@ -152,10 +148,6 @@ footer>h5 {
     align-items: center;
     color: #fff;
 }
-
-
-
-
 
 /*
 * Picture Page
@@ -285,6 +277,7 @@ section>.task:last-of-type {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 10px;
 }
 
 .task-on {
@@ -339,10 +332,6 @@ section>.task:last-of-type {
     text-align: center;
     text-align: -moz-center;
     background-color: #eee;
-}
-
-#signin-body {
-    background-color: #5359FF;
 }
 
 #signin h4 {
