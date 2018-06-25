@@ -120,3 +120,16 @@ function saveTaskList() {
     }
     
 };
+
+
+function showPictureName() {
+	//var input = document.getElementById('selecao-button');
+	var filePath = document.getElementById('file-name');
+
+	
+	var fileNameF = this.value;
+	var fileName = fileNameF.substring(fileNameF.lastIndexOf("\\"));		
+	filePath.textContext = fileNameF;
+
+    
+};

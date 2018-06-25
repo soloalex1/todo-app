@@ -18,4 +18,10 @@ $(document).ready(function() {
 	    removeTask(parentTask);
 	});
     });
+
+    $('#selecao-button').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('#file-name').text(fileName);
+    });
+
 });

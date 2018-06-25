@@ -47,9 +47,9 @@
                         <span id="user-welcome">Olá, <%=username%></span>
                     </div>
                     <div>
-                        <button class="menu-button" id="side_bar_save" onclick="saveTaskList()"> Salvar </button>
-			<button class="menu-button" id="side_bar_download"><a href="download"> Download </a></button>
-                        <button class="menu-button" id="side_bar_logout"><a href="logout"> Logout </a></button>
+                        <button class="menu-button" onclick="saveTaskList()"> Salvar </button>
+			<button class="menu-button"><a href="download"> Download </a></button>
+                        <button class="menu-button"><a href="logout"> Logout </a></button>
                     </div>
                 </div>
                 <section id="task-list-box">
@@ -70,6 +70,7 @@
                            <%}
                         }
                     %>
+                    
                     <input id="task-add-field" type="text" name="taskname" maxlength="75" placeholder="Nova tarefa (máximo 75 caracteres)"/>
                 </section>
             </main>

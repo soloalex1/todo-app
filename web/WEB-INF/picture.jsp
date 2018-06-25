@@ -34,13 +34,17 @@
                         <img src="<%=user.getPicture()%>">
                     </div>
                     
-                    <form action="upload" id="up-op-flex" enctype="multipart/form-data" method="post">
+                    <form action="upload" id="pic-flex" enctype="multipart/form-data" method="post">
                         <input class="input-hidden" type="text" name="username" value="<%=username%>">
                         <input class="input-hidden" type="text" name="picture" value="<%=user.getPicture()%>">
-                        <input type="file" name="arquivo"/>
                         <div>
-                        <input type="submit" value="Enviar" />
-                        <button class="side_bar_bt" onclick="login">dadsdads</button>
+                            <label id="selecao-label" for="selecao-button">Selecionar um arquivo:</label>
+                            <input id="selecao-button" class="input-hidden" type="file" name="arquivo" value="" />
+                            <span id='file-name'></span>
+                        </div>
+                        <div>
+                            <input class="menu-button" type="submit" value="Enviar" />
+                            <button class="menu-button" onclick="login">Retornar</button>
                         </div>
                     </form>
 

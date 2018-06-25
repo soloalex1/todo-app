@@ -13,7 +13,5 @@ public class MD5 {
         m.update(senha.getBytes(), 0, senha.length());
         return new BigInteger(1, m.digest()).toString(16);
     }    
-    public static void main(String[] args) {
-        System.out.println(File.separator + File.pathSeparator);
-    }
+    
 }
