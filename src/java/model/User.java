@@ -8,6 +8,7 @@ public class User {
     private String login;
     private String password;
     private String email;
+    private String picture;
     private int id;
     protected ArrayList<Task> taskList;
             
@@ -55,6 +56,13 @@ public class User {
         this.email = email;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
     /**
      * @return the taskList
      */

@@ -27,7 +27,7 @@
                     UserDAO ud = new UserDAO();
                     user = ud.getUser(username);
                 }
-            %>
+        %>
         <div id="up-content">
             <header>
                    <h1>To-Do App</h1> 
@@ -35,7 +35,17 @@
             </header>
             <main id="content-wrapper">
                 <div class="welcome-box">
-                    <span id="user-welcome">Olá, <%=username%></span>
+                    <div id="perfil-flex">
+                        <div id="perfil-picture">
+                            <form action="picture" method="post">
+                                <input class="input-hidden" name="username" value="<%=username%>">
+                                <input class="input-hidden" name="picture" value="<%=user.getPicture()%>">
+                                <button class="input-button" type="submit">Mudar a foto</button>
+                            </form>
+                                <img src="<%=user.getPicture()%>">
+                        </div>
+                        <span id="user-welcome">Olá, <%=username%></span>
+                    </div>
                     <div>
                         <button class="menu-button" id="side_bar_save" onclick="saveTaskList()"> Salvar </button>
 			<button class="menu-button" id="side_bar_download"><a href="download"> Download </a></button>

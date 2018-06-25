@@ -33,9 +33,8 @@ header {
 }
 
 #signin {
-    margin-top: 100px;
+    margin-top: 80px;
     display: flex;
-    
     justify-content: center;
     text-align: center;
     text-align: -moz-center;
@@ -60,7 +59,7 @@ header {
     border-color: #ccc;
     border-width: 1px;
     font-size: 16px;
-    box-shadow:         inset 0px 1px 2px #cccccc;
+    box-shadow: inset 0px 1px 2px #cccccc;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -74,6 +73,92 @@ header {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
 }
+
+#perfil-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+#perfil-picture {
+    width: 150px;
+    height: 150px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.input-button {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    border-radius: 10px;
+    background-color: #111;
+    font-size: 20px;
+    color: #fff;
+}
+
+#perfil-picture>form {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    text-decoration: none;
+    color: #fff;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+#perfil-picture>form:hover{
+    opacity: 0.6;
+    
+    
+}
+
+#perfil-picture>img {
+    width: 150px;
+    height: 150px;
+    object-fit: fill;
+    border-radius: 10px;
+}
+
+.input-hidden {
+    display: none;
+}
+
+#big-picture {
+    width: 220px;
+    height: 220px;
+    margin-right: 10px;
+    
+}
+
+#big-picture>img {
+    width: 220px;
+    height: 220px;
+    object-fit: fill;
+    
+    border-radius: 10px;
+}
+
+#upload-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#up-op-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
 
 .welcome-box {
     display: flex;
@@ -128,14 +213,17 @@ footer>h5 {
     padding: 5px 0px;
     text-overflow: ellipsis;
     overflow: hidden;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #bbb;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
 }
 
-section>hr:last-of-type {
-    display: none;
+section>.task:last-of-type {
+    border-bottom: none;
     
 }
 
@@ -187,7 +275,7 @@ input#task-add-field {
     background-color: inherit;
     border-style: ridge;
     padding: 10px;
-     margin: 5px 0; 
+    margin: 5px 0; 
     line-height: inherit;
 }
 
