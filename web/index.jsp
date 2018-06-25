@@ -46,7 +46,7 @@
                     <fieldset>
                         <div class="input-info">
                             <label for="name">Username</label>
-                            <input id="name" type="text" placeholder="ex.: avilar" name="username" value="<%= login %>">
+                            <input  type="text" placeholder="ex.: avilar" name="username" value="<%= login %>">
                         </div>
                         <div class="input-info">
                             <label for="password">Password</label>
