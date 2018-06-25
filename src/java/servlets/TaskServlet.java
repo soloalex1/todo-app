@@ -27,6 +27,7 @@ import org.xml.sax.SAXException;
 
 public class TaskServlet extends HttpServlet {
 
+    @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
 	// nesse servlet é obtida e salva a lista de tarefas

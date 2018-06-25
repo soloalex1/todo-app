@@ -16,7 +16,7 @@ function createTask() {
 	
 	let newElement = "";
 	newElement += '<div class="task">';
-    newElement += '<input class="task-checkbox" type="checkbox">';
+        newElement += '<input class="task-checkbox" type="checkbox">';
 	newElement += '<span class="task-title">';
 	newElement += newTaskTitle;
 	newElement += "</span>";

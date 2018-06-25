@@ -38,6 +38,7 @@ public class UserDAO {
                     resultUser.setID(rs.getInt("user_id"));
                     resultUser.setLogin(rs.getString("login"));
                     resultUser.setPassword(rs.getString("senha"));
+                    resultUser.setPicture(rs.getString("picture"));
                     resultUser.taskList = dao.getTask(resultUser);
                 } while (rs.next());
             }
@@ -51,5 +52,38 @@ public class UserDAO {
         }
         
         return resultUser;
+    }
+    
+    public void setPicture(User u, String picture){
+        Connection c = null;
+        try {
+            //configurando a conexão com o banco de dados: url, usuário do BD e senha
+            Class.forName("org.postgresql.Driver");
+            String url = "jdbc:postgresql://localhost:5432/todoapp";
+            String usuarioBD = "bogosort";
+            String senhaBD = "avilar123";
+            c = DriverManager.getConnection(url, usuarioBD, senhaBD);
+            
+            // colocando em modo de transação SQL: assim, eu posso garantir uma maior segurança na atualização do banco
+            // as inserções só são validadas se todas obtiverem sucesso, caso contrário, tudo é descartado           
+            PreparedStatement s;
+         
+            // percorre o ArrayList recebido e insere cada um dos valores
+
+            s = c.prepareStatement("UPDATE usuario SET picture = ? WHERE login = ?");
+            s.setString(1, picture);
+            s.setString(2, u.getLogin());
+            // executo as alterações em memória local - ainda não foi pro banco
+            s.executeUpdate();
+            s.close();
+            
+            
+            // aqui eu aplico as alterações no banco e fecho a conexão, se tiver dado certo
+            c.commit();
+            c.close();
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            }
     }
 }

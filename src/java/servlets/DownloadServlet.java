@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DownloadServlet extends HttpServlet {
 
+    @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         // pegando o context desse servlet (url e os caralhos)
