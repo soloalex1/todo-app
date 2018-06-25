@@ -38,7 +38,7 @@
                         <input class="input-hidden" type="text" name="picture" value="<%=user.getPicture()%>">
                         <div>
                             <label id="selecao-label" for="selecao-button">Selecionar um arquivo:</label>
-                            <input id="selecao-button" class="input-hidden" type="file" name="arquivo" value="" />
+                            <input id="selecao-button" class="input-hidden" type="file" accept="image/*" name="arquivo" value="" />
                             <span id='file-name'></span>
                         </div>
                         <div>
